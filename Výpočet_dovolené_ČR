@@ -1,0 +1,28 @@
+import math
+
+#Definování
+def dovolena():
+  print("↓Zadávej v hodinách↓")
+  SVP = float(input("Skutečný výkon práce: "))
+  PZD = float(input("Plně započitatelné doby (svátky, dovolená, mateřská, ...): "))
+  CZD = float(input("Částečně započitatelné doby (nemoc, rodičovská, ...): "))
+  TPD = float(input("Týdenní pracovní doba: "))
+  VT = float(input("Výměra dovolené v týdnech: "))
+  SVP += PZD
+  if CZD > 0:
+    if SVP >= TPD * 12:
+      if CZD > TPD * 20:
+        CZD = TPD * 20
+    else:
+      CZD = 0
+  vysledek = (((SVP + CZD)//TPD)/52) * VT * TPD
+  print("="*20)
+  print(f"Zaměstnanec má nárok na {math.ceil(vysledek)} hodin dovolené.")
+  y_n = input("Zpustit znovu? Napiš ANO: ").upper()
+  print("="*20)
+  if y_n == "ANO":
+      dovolena()
+
+# Zpuštění
+dovolena()
+
